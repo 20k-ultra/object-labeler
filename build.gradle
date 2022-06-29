@@ -21,6 +21,8 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
+
+	implementation files('/home/mig/Projects/opencv/build/bin/opencv-460.jar')
 }
 
 group = 'com.objectlabeler'
