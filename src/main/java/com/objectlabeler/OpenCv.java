@@ -12,12 +12,15 @@ import static org.opencv.core.Core.inRange;
 
 public class OpenCv {
 
-    public static List<Rect> BoundingBoxes(Mat img, Scalar lower, Scalar upper) {
+    public static List<Rect> BoundingBoxes(BufferedImage img, Scalar lower, Scalar upper) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        // Convert BufferImage to Mat for opencv to process
+        Mat imageMat = img2Mat(img);
         //Creating the empty destination matrix
         Mat imgHSV = new Mat();
         //Converting the image to HSV
-        Imgproc.cvtColor(img, imgHSV, Imgproc.COLOR_BGR2HSV);
+        Imgproc.cvtColor(imageMat, imgHSV, Imgproc.COLOR_BGR2HSV);
         //Create mask
         Mat mask = new Mat();
         // Get items in mask range
