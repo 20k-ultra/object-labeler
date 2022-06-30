@@ -1,12 +1,9 @@
 package com.objectlabeler;
 
 import net.runelite.client.ui.DrawManager;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,8 +11,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Consumer;
-
-import static com.objectlabeler.OpenCv.BoundingBoxes;
 
 public class Annotator {
     ScheduledExecutorService executor;
@@ -43,7 +38,7 @@ public class Annotator {
         this.drawManager.requestNextFrameListener(imageCallback);
     }
 
-    private static void labelFromImage(String[] objects, Image image) throws IOException {
+    private void labelFromImage(String[] objects, Image image) throws IOException {
         String objectName = objects[0]; // TODO support labeling more than 1 object
         Dataset dataset = new Dataset(objectName);
         dataset.mkdir(); // TODO cache the dataset already initialized to not always make them..
@@ -54,7 +49,7 @@ public class Annotator {
         File savedScreenshot = dataset.writeImage(screenshot);
 
         // Get bounding boxes from screenshot
-        List<Rect> boxes = BoundingBoxes(screenshot, new Scalar(89, 130, 189), new Scalar(108, 255, 255));
+        List<Rect> boxes = OpenCv.BoundingBoxes(screenshot, new Scalar(89, 130, 189), new Scalar(108, 255, 255));
 
         StringBuilder detectedCoordinates = new StringBuilder();
         double imageWidth = screenshot.getWidth();

@@ -17,7 +17,7 @@ public class Dataset {
     }
 
     public void mkdir() {
-       this.outputDirectory.mkdirs();
+        this.outputDirectory.mkdirs();
     }
 
     public File writeImage(BufferedImage screenshot) throws IOException {
