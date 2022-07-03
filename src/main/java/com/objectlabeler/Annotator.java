@@ -60,10 +60,10 @@ public class Annotator {
         for (Rect rect : boxes) {
             double width = rect.br().x - rect.tl().x;
             double height = rect.br().y - rect.tl().y;
-            if (width > 25 && height > 25) {
-                double x_center = width / 2;
-                double y_center = height / 2;
 
+            if (width > 25 && height > 25) {
+                double x_center = (rect.br().x + rect.tl().x) / 2;
+                double y_center = (rect.br().y + rect.tl().y) / 2;
                 double x_center_norm = x_center / imageWidth;
                 double y_center_norm = y_center / imageHeight;
                 double width_norm = width / imageWidth;
